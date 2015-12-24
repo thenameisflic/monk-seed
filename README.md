@@ -1,4 +1,5 @@
-# Monk Seed
+# monk-seed
+Monk Framework seed implementation.
 ### Getting started
 1) Clone this repo.
 2) Edit ```outline.json``` with your project characteristics, like name and folder structure.
