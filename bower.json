@@ -1,0 +1,31 @@
+{
+  "name": "monk-seed",
+  "description": "Monk Framework seed implementation.",
+  "main": "",
+  "dependencies": {
+    "angular": "*",
+    "angular-ui-router": "*",
+    "angular-animate": "*",
+    "ngstorage": "*",
+    "angular-resource": "*"
+  },
+  "authors": [
+    "Artur Lima de Miranda <ldm.artur@gmail.com>",
+    "Feliciano Santana <fsfelicianosantana@gmail.com>",
+    "Luis Felipe Silva Sousa <rumpertumpski@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "monk",
+    "seed"
+  ],
+  "moduleType": [],
+  "homepage": "bloomestudio.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

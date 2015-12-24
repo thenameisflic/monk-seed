@@ -1,0 +1,29 @@
+{
+  "name": "monk-seed",
+  "description": "Monk Framework seed implementation.",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "*",
+    "coffee-script": "*",
+    "connect-history-api-fallback": "*",
+    "gulp": "*",
+    "gulp-angular-templatecache": "*",
+    "gulp-coffee": "*",
+    "gulp-concat": "*",
+    "gulp-html-replace": "*",
+    "gulp-if": "*",
+    "gulp-inject": "*",
+    "gulp-jade": "*",
+    "gulp-minify-css": "*",
+    "gulp-ng-annotate": "*",
+    "gulp-plumber": "*",
+    "gulp-replace": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-watch": "*",
+    "main-bower-files": "*",
+    "yargs": "*"
+  }
+}
