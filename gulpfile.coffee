@@ -17,12 +17,11 @@ watch = require 'gulp-watch'
 ngConstant = require 'gulp-ng-constant'
 gulpif = require 'gulp-if'
 htmlreplace = require 'gulp-html-replace'
+minifyCss = require 'gulp-minify-css'
 args = require 'yargs'
-		.alias 'p', 'prod'
-  		.alias 'i', 'int'
-  		.default 'prod', false
-  		.default 'int', true
-  		.argv;
+	.alias 'p', 'prod'
+	.default 'prod', false
+	.argv;
 
 paths = 
 	coffee: "#{outline.src}/**/*.coffee"
@@ -63,6 +62,7 @@ gulp.task 'sass', ->
 	gulp.src [paths.sass]
 		.pipe sass(outputStyle: 'compressed')
 		.pipe concat("#{outline.name}.min.css")
+		.pipe gulpif(args.prod, minifyCss())
 		.pipe gulp.dest("#{outline.dist}/css")
 		.pipe reload(stream: true)
 
