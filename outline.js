@@ -3,7 +3,6 @@ module.exports = {
 	"src": "src",
 	"dist": "www",
 	"constants": {
-	    "myFirstCnt": true,
-	    "mySecondCnt": { "hello": "world" }
+	    
 	}
 };
