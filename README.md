@@ -9,5 +9,5 @@ Monk Framework seed implementation.
 - gulp sass: Compiles all SASS in your ```src``` folder into a single ```dist/css/<project_name>.min.css```.
 - gulp coffee: Compiles all CoffeeScript in your ```src``` folder into a single ```dist/js/<project_name>.min.js```.
 - gulp index: Generates index.html files, automatically injecting your dependencies from ```bower.json```.
-- gulp build [-p|-i|-d]: Builds your project, injecting your desired objects from inject.json.
+- gulp build [-p]: Builds your project. If used with -p, minifies CSS and uglifies JS.
 - gulp (default task): Starts a live reload server, which will watch for changes on project files, rebuild your project and reload all connected browsers.
