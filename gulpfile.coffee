@@ -28,12 +28,12 @@ paths =
 	sass: "#{outline.src}/**/*.scss"
 	jade: "#{outline.src}/**/*.jade"
 	assets: "#{outline.src}/assets/"
+	server: "#{outline.coffeeScripts}/**/*.coffee"
 
 indexInject = 
 	'templateCache': 'js/templates.js'
 	'jsBundle': "js/#{outline.name}.min.js"
 	'cssBundle': "css/#{outline.name}.min.css"
-
 
 gulp.task 'browser-sync', ->
 	browserSync server: baseDir: outline.dist
@@ -85,6 +85,14 @@ gulp.task 'watch', ->
 	watch paths.jade, -> gulp.start 'jade'
 	watch paths.coffee, -> gulp.start 'coffee'
 	watch "#{paths.assets}/**/*", -> gulp.start 'assets'
+
+console.log paths.server
+
+gulp.task 'deploy', ->
+	gulp.src paths.server
+		.pipe plumber()
+		.pipe coffee()
+		.pipe gulp.dest("#{outline.scripts}")
 
 gulp.task 'build', ['assets', 'jade', 'coffee', 'sass']
 gulp.task 'default', ['build', 'browser-sync']

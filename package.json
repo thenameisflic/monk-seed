@@ -2,7 +2,11 @@
   "name": "monk-seed",
   "description": "Monk Framework seed implementation.",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mongoose": "*"
+  },
   "devDependencies": {
     "browser-sync": "*",
     "coffee-script": "*",

@@ -30,3 +30,6 @@ node_modules
 # Front end dependency directory
 www/lib/
 www/
+
+# Compiled scripts folder
+scripts/
