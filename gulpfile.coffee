@@ -14,6 +14,15 @@ ngAnnotate = require 'gulp-ng-annotate'
 concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
 watch = require 'gulp-watch'
+ngConstant = require 'gulp-ng-constant'
+gulpif = require 'gulp-if'
+htmlreplace = require 'gulp-html-replace'
+args = require 'yargs'
+		.alias 'p', 'prod'
+  		.alias 'i', 'int'
+  		.default 'prod', false
+  		.default 'int', true
+  		.argv;
 
 paths = 
 	coffee: "#{outline.src}/**/*.coffee"
@@ -27,14 +36,16 @@ gulp.task 'browser-sync', ->
 gulp.task 'index', ->
 	gulp.src "#{outline.src}/index.jade"
 		.pipe plumber()
-		.pipe jade()
-		.pipe inject(gulp.src(bowerFiles()), {name: 'bower', addRootSlash: false, ignorePath: "/#{outline.dist}"})
+		.pipe jade(pretty: true)
+		.pipe htmlreplace('templateCache': 'js/templates.js', 'jsBundle': "js/#{outline.name}.min.js", "cssBundle": "css/#{outline.name}.min.css")
+		.pipe inject(gulp.src("#{outline.dist}/css/#{outline.name}.min.css", read : false), {name: 'inject', addRootSlash: false, ignorePath: "/#{outline.dist}"})
+		.pipe inject(gulp.src(bowerFiles(), read: false), {name: 'bower', addRootSlash: false, ignorePath: "/#{outline.dist}"})
 		.pipe gulp.dest("#{outline.dist}")
 
 gulp.task 'jade', ['index'], ->
 	gulp.src [paths.jade, '!**/*/index.jade']
 		.pipe plumber()
-		.pipe jade(pretty : true)
+		.pipe jade(pretty: true)
 		.pipe templateCache({standalone: true})
 		.pipe gulp.dest("#{outline.dist}/js")
 
@@ -43,7 +54,7 @@ gulp.task 'sass', ->
 		.pipe sass(outputStyle: 'compressed')
 		.pipe concat("#{outline.name}.min.css")
 		.pipe gulp.dest("#{outline.dist}/css")
-		.pipe reload(stream : true)
+		.pipe reload(stream: true)
 
 gulp.task 'coffee', ->
 	gulp.src paths.coffee
@@ -51,13 +62,16 @@ gulp.task 'coffee', ->
 		.pipe coffee()
 		.pipe concat("#{outline.name}.min.js")
 		.pipe ngAnnotate()
-		.pipe uglify()
+		.pipe gulpif(args.prod, uglify())
 		.pipe gulp.dest("#{outline.dist}/js")
-		.pipe reload(stream : true)
+		.pipe reload(stream: true)
 
 gulp.task 'assets', ->
 	gulp.src paths.assets
 		.pipe gulp.dest("#{outline.dist}")
+
+gulp.task 'config', ->
+	gulp.src ''
 
 gulp.task 'watch', ->
 	watch paths.sass, -> gulp.start 'sass'

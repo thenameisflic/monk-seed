@@ -6,7 +6,6 @@
   "devDependencies": {
     "browser-sync": "*",
     "coffee-script": "*",
-    "connect-history-api-fallback": "*",
     "gulp": "*",
     "gulp-angular-templatecache": "*",
     "gulp-coffee": "*",
@@ -17,6 +16,7 @@
     "gulp-jade": "*",
     "gulp-minify-css": "*",
     "gulp-ng-annotate": "*",
+    "gulp-ng-constant": "*",
     "gulp-plumber": "*",
     "gulp-replace": "*",
     "gulp-sass": "*",
