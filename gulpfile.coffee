@@ -1,4 +1,4 @@
-outline = require './outline.json'
+outline = require './outline.js'
 
 gulp = require 'gulp'
 jade = require 'gulp-jade'
@@ -39,6 +39,11 @@ indexInject =
 gulp.task 'browser-sync', ->
 	browserSync server: baseDir: outline.dist
 
+gulp.task 'config', ->
+	gulp.src 'outline.json'
+		.pipe ngConstant()
+		.pipe gulp.dest("#{outline.dist}/js/")
+
 gulp.task 'index', ->
 	gulp.src "#{outline.src}/index.jade"
 		.pipe plumber()
@@ -74,9 +79,6 @@ gulp.task 'coffee', ->
 gulp.task 'assets', ->
 	gulp.src paths.assets
 		.pipe gulp.dest("#{outline.dist}")
-
-gulp.task 'config', ->
-	gulp.src ''
 
 gulp.task 'watch', ->
 	watch paths.sass, -> gulp.start 'sass'
