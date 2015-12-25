@@ -1,5 +1,16 @@
 # monk-seed
 Monk Framework seed implementation.
+
+## Features
+- MongoDB
+- Express
+- Angular
+- Node
+
+- Sass
+- CoffeeScript
+- Jade
+
 ### Getting started
 1) Clone this repo.
 2) Edit ```outline.json``` with your project characteristics, like name and folder structure.
