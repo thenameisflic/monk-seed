@@ -30,6 +30,12 @@ paths =
 	jade: "#{outline.src}/**/*.jade"
 	assets: "#{outline.src}/assets/"
 
+indexInject = 
+	'templateCache': 'js/templates.js'
+	'jsBundle': "js/#{outline.name}.min.js"
+	'cssBundle': "css/#{outline.name}.min.css"
+
+
 gulp.task 'browser-sync', ->
 	browserSync server: baseDir: outline.dist
 
@@ -37,8 +43,7 @@ gulp.task 'index', ->
 	gulp.src "#{outline.src}/index.jade"
 		.pipe plumber()
 		.pipe jade(pretty: true)
-		.pipe htmlreplace('templateCache': 'js/templates.js', 'jsBundle': "js/#{outline.name}.min.js", "cssBundle": "css/#{outline.name}.min.css")
-		.pipe inject(gulp.src("#{outline.dist}/css/#{outline.name}.min.css", read : false), {name: 'inject', addRootSlash: false, ignorePath: "/#{outline.dist}"})
+		.pipe htmlreplace(index)
 		.pipe inject(gulp.src(bowerFiles(), read: false), {name: 'bower', addRootSlash: false, ignorePath: "/#{outline.dist}"})
 		.pipe gulp.dest("#{outline.dist}")
 
