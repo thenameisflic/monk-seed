@@ -57,6 +57,7 @@ gulp.task 'jade', ['index'], ->
 		.pipe jade(pretty: true)
 		.pipe templateCache({standalone: true})
 		.pipe gulp.dest("#{outline.dist}/js")
+		.pipe reload(stream: true)
 
 gulp.task 'sass', ->
 	gulp.src [paths.sass]
@@ -95,4 +96,4 @@ gulp.task 'deploy', ->
 		.pipe gulp.dest("#{outline.scripts}")
 
 gulp.task 'build', ['assets', 'jade', 'coffee', 'sass']
-gulp.task 'default', ['build', 'browser-sync']
+gulp.task 'default', ['build', 'browser-sync', 'watch']
