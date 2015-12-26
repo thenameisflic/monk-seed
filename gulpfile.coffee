@@ -47,7 +47,7 @@ gulp.task 'index', ->
 	gulp.src "#{outline.src}/index.jade"
 		.pipe plumber()
 		.pipe jade(pretty: true)
-		.pipe htmlreplace(index)
+		.pipe htmlreplace(indexInject)
 		.pipe inject(gulp.src(bowerFiles(), read: false), {name: 'bower', addRootSlash: false, ignorePath: "/#{outline.dist}"})
 		.pipe gulp.dest("#{outline.dist}")
 
