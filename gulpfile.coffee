@@ -27,7 +27,7 @@ paths =
 	coffee: "#{outline.src}/**/*.coffee"
 	sass: "#{outline.src}/**/*.scss"
 	jade: "#{outline.src}/**/*.jade"
-	assets: "#{outline.src}/assets/"
+	assets: "#{outline.src}/assets/**/*"
 	server: "#{outline.coffeeScripts}/**/*.coffee"
 
 indexInject = 
@@ -80,13 +80,13 @@ gulp.task 'coffee', ->
 
 gulp.task 'assets', ->
 	gulp.src paths.assets
-		.pipe gulp.dest("#{outline.dist}")
+		.pipe gulp.dest("#{outline.dist}/assets")
 
 gulp.task 'watch', ->
 	watch paths.sass, -> gulp.start 'sass'
 	watch paths.jade, -> gulp.start 'jade'
 	watch paths.coffee, -> gulp.start 'coffee'
-	watch "#{paths.assets}/**/*", -> gulp.start 'assets'
+	watch paths.assets, -> gulp.start 'assets'
 
 gulp.task 'deploy', ->
 	gulp.src paths.server
