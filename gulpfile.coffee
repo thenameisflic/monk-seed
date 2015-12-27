@@ -61,6 +61,7 @@ gulp.task 'jade', ['index'], ->
 
 gulp.task 'sass', ->
 	gulp.src [paths.sass]
+		.pipe plumber()
 		.pipe sass(outputStyle: 'compressed')
 		.pipe concat("#{outline.name}.min.css")
 		.pipe gulpif(args.prod, minifyCss())
@@ -86,8 +87,6 @@ gulp.task 'watch', ->
 	watch paths.jade, -> gulp.start 'jade'
 	watch paths.coffee, -> gulp.start 'coffee'
 	watch "#{paths.assets}/**/*", -> gulp.start 'assets'
-
-console.log paths.server
 
 gulp.task 'deploy', ->
 	gulp.src paths.server
