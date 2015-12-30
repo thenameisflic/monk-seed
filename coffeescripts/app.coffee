@@ -17,7 +17,7 @@ utils.allowCORS(app);
 # Setup routes
 for route in routes
 	for name, config of route
-		console.log "name : #{config.auth}"
+		console.log "#{name}"
 		url = name.split('.')[0];
 		if config.auth in ['true', 'optional']
 			app[config.method](url, (req, res, next) -> utils.setupAuthData req, res, next, config)
