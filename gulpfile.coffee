@@ -82,17 +82,18 @@ gulp.task 'assets', ->
 	gulp.src paths.assets
 		.pipe gulp.dest("#{outline.dist}/assets")
 
-gulp.task 'watch', ->
-	watch paths.sass, -> gulp.start 'sass'
-	watch paths.jade, -> gulp.start 'jade'
-	watch paths.coffee, -> gulp.start 'coffee'
-	watch paths.assets, -> gulp.start 'assets'
-
 gulp.task 'deploy', ->
 	gulp.src paths.server
 		.pipe plumber()
 		.pipe coffee()
 		.pipe gulp.dest("#{outline.scripts}")
+
+gulp.task 'watch', ->
+	watch paths.sass, -> gulp.start 'sass'
+	watch paths.jade, -> gulp.start 'jade'
+	watch paths.coffee, -> gulp.start 'coffee'
+	watch paths.assets, -> gulp.start 'assets'
+	watch paths.server, -> gulp.start 'deploy'
 
 gulp.task 'build', ['assets', 'jade', 'coffee', 'sass']
 gulp.task 'default', ['build', 'browser-sync', 'watch']
