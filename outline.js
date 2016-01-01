@@ -13,7 +13,8 @@ module.exports = {
 	"coffeeScripts": "coffeescripts",
 	"scripts": "scripts",
 	"constants": {
-	    
+	    "production": {},
+	    "development": {}
 	},
 	"db" : {
 		"name": DB_NAME,

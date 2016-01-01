@@ -39,8 +39,10 @@ gulp.task 'browser-sync', ->
 	browserSync server: baseDir: outline.dist
 
 gulp.task 'config', ->
-	gulp.src 'outline.json'
-		.pipe ngConstant()
+	constants = if args.prod then outline.constants.production else outline.constants.development
+	gulp.src 'package.json'
+		.pipe concat('outline.json')
+		.pipe ngConstant({name: "outline", constants: constants})
 		.pipe gulp.dest("#{outline.dist}/js/")
 
 gulp.task 'index', ->
@@ -68,10 +70,10 @@ gulp.task 'sass', ->
 		.pipe gulp.dest("#{outline.dist}/css")
 		.pipe reload(stream: true)
 
-gulp.task 'coffee', ->
-	gulp.src paths.coffee
+gulp.task 'coffee', ['config'], ->
+	gulp.src ["#{outline.dist}/js/outline.js", paths.coffee]
 		.pipe plumber()
-		.pipe coffee()
+		.pipe gulpif(/[.]coffee$/, coffee())
 		.pipe concat("#{outline.name}.min.js")
 		.pipe ngAnnotate()
 		.pipe gulpif(args.prod, uglify())
