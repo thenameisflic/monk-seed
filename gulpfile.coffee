@@ -98,4 +98,4 @@ gulp.task 'watch', ->
 	watch paths.server, -> gulp.start 'deploy'
 
 gulp.task 'build', ['assets', 'jade', 'coffee', 'sass']
-gulp.task 'default', ['build', 'browser-sync', 'watch']
+gulp.task 'default', ['build', 'deploy', 'browser-sync', 'watch']
