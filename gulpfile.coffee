@@ -64,7 +64,7 @@ gulp.task 'jade', ['index'], ->
 gulp.task 'sass', ->
 	gulp.src [paths.sass]
 		.pipe plumber()
-		.pipe sass(outputStyle: 'compressed')
+		.pipe sass(outputStyle: 'compressed').on('error', sass.logError)
 		.pipe concat("#{outline.name}.min.css")
 		.pipe gulpif(args.prod, minifyCss())
 		.pipe gulp.dest("#{outline.dist}/css")
